@@ -28,18 +28,11 @@ class _DashBoardState extends State<DashBoard> {
   var name = "";
 
   fetchName(){
-
     prefs.LoadName().then((value){
-
-      print(name);
-
       setState((){
-
         name = value;
-
       });
     });
-
   }
 
   void initState(){

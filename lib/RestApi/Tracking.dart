@@ -20,10 +20,10 @@ class Tracking {
     }
   }
 
-  endTracking(user) async {
+  endTracking(id) async {
+
     try {
-      var res = await http.get(
-          Uri.parse(conn + "/Tracking/fetchEnded/${user}"),
+      var res = await http.get(Uri.parse(conn + "/Tracking/end/${id}"),
           headers: {"content-type": "application/json"});
 
       if (res.statusCode == 200)
@@ -36,4 +36,25 @@ class Tracking {
       return null;
     }
   }
+
+  fetchEnded(user) async{
+
+    try {
+      var res = await http.get(Uri.parse(conn + "/Tracking/fetchEnded/${user}"),
+          headers: {"content-type": "application/json"});
+
+      if (res.statusCode == 200)
+        return json.decode(res.body);
+      else
+        return "null";
+    } catch (e) {
+      print(e.toString());
+
+      return null;
+    }
+
+  }
+
+
+
 }

@@ -1,6 +1,7 @@
 import 'package:find_me/RestApi/Profile.dart';
 import 'package:find_me/Utils/Prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'Components/DisplayPic.dart';
 
 class Profile extends StatefulWidget {
@@ -49,7 +50,7 @@ class _ProfileState extends State<Profile> {
       child: (data.length != 0)?Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          DisplayPic(),
+          DisplayPic(initials: "${(data[0]['first_name']).substring(0,1)} ${(data[0]['last_name']).substring(0,1)}",),
           Container(height: 30),
           Container(
             margin: EdgeInsets.all(20),
@@ -99,8 +100,13 @@ class _ProfileState extends State<Profile> {
               )
           ),
         ],
+
+
       ):Center(
-        child: CircularProgressIndicator(color: Colors.green,),
+        child: Container(
+            width: size.height*0.3,
+            height: size.height*0.3,
+            child:Lottie.asset('assets/99680-3-dots-loading.json')),
       ),
     );
   }

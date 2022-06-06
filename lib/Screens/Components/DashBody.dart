@@ -1,9 +1,11 @@
 import 'package:find_me/RestApi/Contacts.dart';
 import 'package:find_me/RestApi/DashAct.dart';
 import 'package:find_me/Utils/Prefs.dart';
+import 'package:find_me/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../FindUser.dart';
 import 'RequestCards.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'SearchBar.dart';
 
 class DashBody extends StatefulWidget {
@@ -16,6 +18,35 @@ class _DashBodyState extends State<DashBody> {
 
   List dashStats = [];
 
+  late IO.Socket socket;
+
+   void initSocket() async{
+
+    try{
+      socket = IO.io(conn, <String, dynamic>{
+        'transports':['websocket'],
+        'autoConnect': false,
+      });
+
+      socket.connect();
+
+      socket.onConnect((data){
+        print("connected");
+      });
+
+      socket.on("location-changed",(data){
+
+        print(data);
+
+      });
+
+
+    }catch(e){
+      print(e.toString());
+    }
+
+  }
+
   var user = '';
 
   fetchStat() {
@@ -25,8 +56,6 @@ class _DashBodyState extends State<DashBody> {
       });
 
       dashAct.fetchDash(value).then((values) {
-        print(values);
-
         setState(() {
           dashStats = values;
         });
@@ -38,6 +67,7 @@ class _DashBodyState extends State<DashBody> {
     super.initState();
 
     fetchStat();
+    initSocket();
   }
 
   DashAct dashAct = DashAct();
@@ -112,9 +142,11 @@ class _DashBodyState extends State<DashBody> {
                   margin: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                   child: FlatButton(
                     color: Colors.grey[200],
-                    onPressed: () {},
+                    onPressed: () {
+                    socket.emit("location-change","Hello World");
+                    },
                     child: Text(
-                      "Select from Contacts",
+                      "Select from Favourites",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,

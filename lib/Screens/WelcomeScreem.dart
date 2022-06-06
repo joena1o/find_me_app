@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:lottie/lottie.dart';
 import 'package:find_me/Utils/Prefs.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   void Boot(value) {
 
-    Timer(Duration(seconds: 4), () {
+    Timer(Duration(seconds: 19), () {
 
       print(value);
 
@@ -64,17 +64,26 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             "FIND ME",
             style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.normal,
+                fontStyle: FontStyle.normal,
                 fontSize: 29,
                 letterSpacing: 2.5),
           ),
           Container(
-            height: size.height * 0.2,
+            height: size.height * 0.1,
           ),
           (!loadComplete)
               ? Container(
-                  width: size.width * .2,
-                  height: size.width * .2,
+              width: size.height*0.3,
+              height: size.height*0.3,
+              child:Lottie.asset('assets/94027-location.json')):Container(),
+          Container(
+            height: size.height * 0.1,
+          ),
+          (!loadComplete)
+              ? Container(
+                  width: size.width * .1,
+                  height: size.width * .1,
                   child: CircularProgressIndicator(
                     color: Colors.white,
                     strokeWidth: 10,

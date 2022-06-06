@@ -13,28 +13,28 @@ class _TrackingRequestState extends State<TrackingRequest>
 
   var cartPrice;
 
-  var tracking_num = 0;
+  var tracking_num = 0, ended = 0;
 
   setTrackNum(val){
-
     setState((){
-
       tracking_num = val;
-
     });
+  }
 
+  setEndedNum(val){
+    setState((){
+        ended = val;
+    });
   }
 
   void initState() {
     super.initState();
-
     controller = new TabController(length: 2, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Container(
       width: size.width,
       height: size.height * .75,
@@ -53,9 +53,10 @@ class _TrackingRequestState extends State<TrackingRequest>
                 tabs: [
                   Tab(text: 'Currently Tracking ${tracking_num}'),
                   Tab(
-                    text: 'Ended 0',
+                    text: 'Ended $ended',
                   ),
                 ],
+
               ),
             ),
           ),
@@ -72,7 +73,7 @@ class _TrackingRequestState extends State<TrackingRequest>
                 Container(
                     width: size.width,
                     height: size.height * .63,
-                    child: EndedTab()),
+                    child: EndedTab(ended: setEndedNum)),
               ],
               controller: controller,
             ),

@@ -20,7 +20,7 @@ class RequestCards extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          DisplayPic(),
+          DisplayPic(initials: "${(data[0]['first_name']).substring(0,1)} ${(data[0]['last_name']).substring(0,1)}"),
           Container(
             width: size.width * .6,
             child: Column(

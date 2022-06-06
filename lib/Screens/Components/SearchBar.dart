@@ -27,7 +27,7 @@ class SearchBar extends StatelessWidget {
                 autofocus: false,
                 decoration: InputDecoration(
                   hintText: "Enter Phone Number",
-                  //border: InputBorder.noneu
+                  //border: InputBorder.none
                 ),
                 keyboardType: TextInputType.number,
                 onChanged: (text) {

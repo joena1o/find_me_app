@@ -16,10 +16,10 @@ class _HistoryState extends State<History> {
       child: ListView(
         children: [
           Container(
-            height: size.height * .09,
-            padding: EdgeInsets.all(20),
+            height: size.height *.1,
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             child: Text(
-              "Find History",
+                "Notifications",
               style: TextStyle(fontSize: 16),
             ),
           ),

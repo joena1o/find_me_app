@@ -25,11 +25,11 @@ class Navbar extends StatelessWidget {
             children: [
               Text(
                 "Hello,",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               //Container(height: 2,),
               Text("$name",
-                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16))
+                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17))
             ],
           ),
           GestureDetector(

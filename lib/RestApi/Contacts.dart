@@ -10,6 +10,7 @@ class contactClass {
           headers: {"content-type": "application/json"});
 
       if (res.statusCode == 200) {
+        print(res.body);
         return json.decode(res.body);
       } else {
         return "failed";

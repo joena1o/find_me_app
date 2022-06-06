@@ -25,7 +25,7 @@ class ReceiveCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          DisplayPic(),
+          DisplayPic(initials:"${(Data[0]['first_name']).substring(0,1)} ${(Data[0]['last_name']).substring(0,1)}"),
           Container(
             width: size.width * .6,
             child: Column(
@@ -57,7 +57,7 @@ class ReceiveCard extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (_)=> Location()
+                                builder: (_)=> Location(name: "${Data[0]['first_name']} ${Data[0]['last_name']}"  )
                               )
                             );
                           },
@@ -75,7 +75,11 @@ class ReceiveCard extends StatelessWidget {
                         child: IconButton(
                           onPressed: () {
 
+
+
                             tracking.endTracking(Data[0]['request_id']).then((value){
+
+                              print(value);
 
                               if(value=="Done")
                                 callback(index);

@@ -3,8 +3,15 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'Components/TrackingBottomNav.dart';
+import 'package:geolocator/geolocator.dart';
+
+
 
 class Location extends StatefulWidget {
+  Location({Key? key, this.name}):super(key: key);
+
+  var name;
+
   @override
   _LocationState createState() => _LocationState();
 }
@@ -17,6 +24,8 @@ class _LocationState extends State<Location> {
   List<LatLng> polylinecoordinates = [];
 
   PolylinePoints polylinePoints = PolylinePoints();
+
+  late double distanceInMeters = Geolocator.distanceBetween(37.42796133580664, -122.085749655962, 37.43296265331129, -122.08832357078792);
 
   Switch(){
 
@@ -90,7 +99,7 @@ class _LocationState extends State<Location> {
 
             Container(
               width: size.width,
-              height: (!expand)?size.height/2:size.height*0.865,
+              height: (!expand)?size.height*0.369:size.height*0.865,
               color: Colors.grey,
               child: GoogleMap(
                 mapType: MapType.terrain,
@@ -107,7 +116,7 @@ class _LocationState extends State<Location> {
 
         (!expand)?Container(
               width: size.width,
-              height: size.height*0.365,
+              height: size.height*0.5,
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
               color: Colors.grey[200],
               child: ListView(
@@ -133,7 +142,7 @@ class _LocationState extends State<Location> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Tracking: Hyefur Jonathan"),
+                        Text("Tracking: ${widget.name}"),
                         Icon(Icons.location_on, color: Colors.green, size: 39,)
                       ],
                     ),
@@ -146,6 +155,16 @@ class _LocationState extends State<Location> {
                       children: [
                         Text("You"),
                         Icon(Icons.location_on, color: Colors.blue, size: 39,)
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Distance: ${ double.parse((distanceInMeters).toStringAsFixed(2))}m"),
                       ],
                     ),
                   )

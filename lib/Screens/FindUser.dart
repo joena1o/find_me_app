@@ -50,7 +50,7 @@ class _FindUserState extends State<FindUser> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              DisplayPic(),
+              DisplayPic(initials: "${(data[0]['first_name']).substring(0,1)} ${(data[0]['last_name']).substring(0,1)}"),
               Container(height: 30),
               Container(
                 margin: EdgeInsets.all(20),
