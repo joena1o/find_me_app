@@ -28,18 +28,28 @@ class AuthClass {
   }
 
   SignIn(user, password) async {
-    var res = await http.post(Uri.parse(conn + "/Auth/signIn"),
-        body: jsonEncode({"user": user, "password": password}),
-        headers: {"content-type": "application/json"});
 
-    if (res.statusCode == 200) {
+    try{
 
-      if(res.body != "null")
-       return json.decode(res.body);
-      else
-        return res.body;
-    } else {
-      return "failed";
+      var res = await http.post(Uri.parse(conn + "/Auth/signIn"),
+          body: jsonEncode({"user": user, "password": password}),
+          headers: {"content-type": "application/json"});
+
+      if (res.statusCode == 200) {
+
+        if(res.body != "null")
+          return json.decode(res.body);
+        else
+          return res.body;
+      } else {
+        return "failed";
+      }
+
+    }catch(e){
+      print(e.toString());
     }
+
   }
+
+
 }
