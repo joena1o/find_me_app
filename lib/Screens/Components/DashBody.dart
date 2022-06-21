@@ -97,7 +97,7 @@ class _DashBodyState extends State<DashBody> {
             return Column(
               children: [
                 Container(
-                  height: 30,
+                  height: 20,
                 ),
                 SearchBar(
                   callback: setPhone,
@@ -119,6 +119,8 @@ class _DashBodyState extends State<DashBody> {
 
                       contact.SearchContact(phone).then((value) {
                         if (value != "failed" || value != null) {
+
+
                           Navigator.of(context).pop();
 
                           Navigator.of(context).push(MaterialPageRoute(

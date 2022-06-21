@@ -21,7 +21,6 @@ class Tracking {
   }
 
   endTracking(id) async {
-
     try {
       var res = await http.get(Uri.parse(conn + "/Tracking/end/${id}"),
           headers: {"content-type": "application/json"});
@@ -37,8 +36,7 @@ class Tracking {
     }
   }
 
-  fetchEnded(user) async{
-
+  fetchEnded(user) async {
     try {
       var res = await http.get(Uri.parse(conn + "/Tracking/fetchEnded/${user}"),
           headers: {"content-type": "application/json"});
@@ -52,9 +50,44 @@ class Tracking {
 
       return null;
     }
-
   }
 
+  UpdateLocation(lat, lng, user) async {
+    try {
+      var res = await http.post(Uri.parse(conn + '/Tracking/updateLocation'),
+          body: jsonEncode({"user": user, "lat": lat, "lng": lng}),
+          headers: {"content-type": "application/json"});
+
+      print(res.body);
+
+      if (res.body != "done") {
+        return res.body;
+      } else {
+        return 'Success';
+      }
+
+
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  FindLocation(user) async{
+
+    try{
+
+      var res = await http.get(Uri.parse(conn+ "/Tracking/FindLocation/$user"),
+       headers: {"content-type":"application/json"}
+      );
+
+      print(res.body);
+
+    }catch(e){
+      print(e.toString());
+    }
+
+
+  }
 
 
 }

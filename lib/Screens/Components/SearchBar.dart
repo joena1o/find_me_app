@@ -12,7 +12,7 @@ class SearchBar extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.1,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -22,7 +22,7 @@ class SearchBar extends StatelessWidget {
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
           Container(
-              width: size.width * .67,
+              width: size.width * .64,
               child: TextFormField(
                 autofocus: false,
                 decoration: InputDecoration(

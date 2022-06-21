@@ -57,7 +57,7 @@ class ReceiveCard extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (_)=> Location(name: "${Data[0]['first_name']} ${Data[0]['last_name']}"  )
+                                builder: (_)=> Location(name: "${Data[0]['first_name']} ${Data[0]['last_name']}", email: Data[0]['email'] )
                               )
                             );
                           },
